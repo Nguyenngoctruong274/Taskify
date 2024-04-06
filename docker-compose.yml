@@ -1,0 +1,23 @@
+services:
+  db:
+    container_name: taskify
+    image: postgres
+    environment:
+      POSTGRES_DB: taskify
+      POSTGRES_USER: gnourt
+      POSTGRES_PASSWORD: password
+      PGDATA: /data/taskify
+    volumes:
+      - db:/data/taskify
+    ports:
+      - "5332:5432"
+    networks:
+      - db
+    restart: unless-stopped
+
+networks:
+  db:
+    driver: bridge
+
+volumes:
+  db:
